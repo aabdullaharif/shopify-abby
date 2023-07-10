@@ -1,0 +1,8 @@
+{
+    "templates":{
+        "search": {},
+        "cart": {},
+        "contact": {},
+        "404": {}
+    }
+}
