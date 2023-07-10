@@ -1,11 +1,12 @@
 [
     {
-      "name": "theme_info",
-      "theme_name": "Abby",
-      "theme_author": "Abby",
-      "theme_version": "0.0.1",
-      "theme_documentation_url": "#",
-      "theme_support_url": "#"
-    }
+        "name": "theme_info",
+        "theme_name": "Abby",
+        "theme_author": "Abby",
+        "theme_version": "0.0.1",
+        "theme_documentation_url": "https://abby.dev/docs",
+        "theme_support_url": "https://abby.dev",
+        "theme_support_email": "ab.arif924@gmail.com"
+      }
 ]
   
