@@ -1,0 +1,55 @@
+<div class="product-wrapper">
+  <ul class="product-image">
+    {% for media in product.media %}
+      <li>
+        <img src="{{ media | img_url: 'medium' }}" />
+      </li>
+    {% endfor %}
+  </ul>
+
+  <div class="product-content">
+    <h2>{{ product.title }}</h2>
+    <p>{{ product.description }}</p>
+
+    <h4>{{ product.price | money_with_currency }}</h4>
+
+    {% unless product.has_only_default_variant %}
+      <variant-radios
+        data-section="{{ section.id }}"
+        data-url="{{ product.url }}"
+        {{ block.shopify_attributes }}>
+        {%- for option in product.options_with_values -%}
+          <fieldset class="js product-form__input">
+            <legend class="form__label">{{ option.name }}</legend>
+            {%- for value in option.values -%}
+              <input
+                type="radio"
+                id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
+                name="{{ option.name }}"
+                value="{{ value | escape }}"
+                form="{{ product_form_id }}"
+                {% if option.selected_value == value %}checked{% endif %}>
+              <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
+                {{ value }}
+              </label>
+
+            {%- endfor -%}
+          </fieldset>
+        {%- endfor -%}
+        <script type="application/json">
+          {{ product.variants | json }}
+        </script>
+      </variant-radios>
+
+    {% endunless %}
+
+    {% form 'product', product %}
+      <input
+        type="hidden"
+        name="id"
+        value="{{ product.selected_or_first_available_variant.id }}">
+      {{ form | payment_terms }}
+    {% endform %}
+
+  </div>
+</div>
